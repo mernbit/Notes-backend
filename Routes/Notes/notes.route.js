@@ -131,10 +131,9 @@ notesRouter.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     console.log(id);
-    const singleNote = await Note.findById(id).populate(
-      "allowedUsers",
-      "email -_id"
-    );
+    const singleNote = await Note.findById(id)
+      .populate("allowedUsers", "email -_id")
+      .populate("createdBy", "firstName lastName");
     if (!singleNote) return res.json({ msg: "Note not found" });
     console.log(singleNote);
     res.json(singleNote);
