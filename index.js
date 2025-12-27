@@ -7,7 +7,11 @@ const { PORT, MONGODB_URL } = process.env;
 const port = PORT || 8000;
 const authRouter = require("./Routes/Auth/auth.routes");
 const notesRouter = require("./Routes/Notes/notes.route");
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 
 mongoose
