@@ -9,13 +9,9 @@ const authRouter = require("./Routes/Auth/auth.routes");
 const notesRouter = require("./Routes/Notes/notes.route");
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    origin: "*",
   })
 );
-// app.use(cors());
-app.options("*", cors());
 app.use(express.json());
 
 const connectDB = async () => {
@@ -38,10 +34,6 @@ app.get("/", (req, res) => {
   res.send("server is online");
 });
 
-app.listen(port);
-
-// app.listen(port, () => {
-//   console.log(`Your server is online at http://localhost:${port}`);
-// });
-
-module.exports = app;
+app.listen(port, () => {
+  console.log(`Your server is online at http://localhost:${port}`);
+});
