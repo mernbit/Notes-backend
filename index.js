@@ -7,6 +7,9 @@ const { PORT, MONGODB_URL } = process.env;
 const port = PORT || 8000;
 const authRouter = require("./Routes/Auth/auth.routes");
 const notesRouter = require("./Routes/Notes/notes.route");
+
+let isConnected = false;
+
 app.use(
   cors({
     origin: "*",
@@ -15,10 +18,12 @@ app.use(
 app.use(express.json());
 
 const connectDB = async () => {
+  if (isConnected) return;
   await mongoose
     .connect(MONGODB_URL)
     .then((res) => {
       console.log("MongoDB connected successfully");
+      isConnected = true;
     })
     .catch((error) => {
       console.log(error);
