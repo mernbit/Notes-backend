@@ -38,6 +38,8 @@ app.get("/", (req, res) => {
   res.send("server is online");
 });
 
+app.listen(port);
+
 // app.listen(port, () => {
 //   console.log(`Your server is online at http://localhost:${port}`);
 // });
