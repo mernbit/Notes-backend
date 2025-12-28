@@ -14,15 +14,17 @@ app.use(
 );
 app.use(express.json());
 
-mongoose
-  .connect(MONGODB_URL)
-  .then((res) => {
-    console.log("MongoDB connected successfully");
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
+const connectDB = async () => {
+  await mongoose
+    .connect(MONGODB_URL)
+    .then((res) => {
+      console.log("MongoDB connected successfully");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+connectDB();
 // Routes
 
 app.use("/api", authRouter);
